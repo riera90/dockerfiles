@@ -10,8 +10,8 @@ services:
         ports:
             - 80:80
             - 443:443
-        hostname: 104.248.173.230
+        hostname: <ip>
         environment:
-            - GITLAB_OMNIBUS_CONFIG=external_url 'https://104.248.173.230:443';
+            - GITLAB_OMNIBUS_CONFIG=external_url 'https://<ip>';
 volumes: 
     docker_data:
