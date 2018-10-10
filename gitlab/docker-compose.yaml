@@ -1,0 +1,17 @@
+version: '3'
+services:
+
+    web:
+        image: gitlab/gitlab-ce:latest 
+        volumes:
+            - /dockers/gitlab/volumes/config:/etc/gitlab
+            - /dockers/gitlab/volumes/logs:/var/log/gitlab
+            - /dockers/gitlab/volumes/data:/var/opt/gitlab
+        ports:
+            - 80:80
+            - 443:443
+        hostname: 104.248.173.230
+        environment:
+            - GITLAB_OMNIBUS_CONFIG=external_url 'https://104.248.173.230:443';
+volumes: 
+    docker_data:
