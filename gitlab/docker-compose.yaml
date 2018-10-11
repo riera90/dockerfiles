@@ -7,7 +7,7 @@ services:
    - 80:80
    - 443:443
   volumes:
-   - /gitlab/log:var/logs/gitlab
+   - /gitlab/log:/var/logs/gitlab
    - /gitlab/data:/var/opt/gitlab
    - /gitlab/config:/etc/gitlab
   hostname: <ip>
