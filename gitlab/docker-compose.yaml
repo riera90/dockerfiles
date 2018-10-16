@@ -6,11 +6,12 @@ services:
   ports:
    - 80:80
    - 443:443
+   - 0.0.0.0:22:22
   volumes:
    - /gitlab/log:/var/logs/gitlab
    - /gitlab/data:/var/opt/gitlab
    - /gitlab/config:/etc/gitlab
-  hostname: <ip>
+  hostname: <ip/dns>
   restart: always
   environment:
-   GITLAB_OMNIBUS_CONFIG: external_url 'http://<ip>:80/'
+          GITLAB_OMNIBUS_CONFIG: external_url 'http://<ip/dns>:80/'
