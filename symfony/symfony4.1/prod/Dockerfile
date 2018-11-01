@@ -13,7 +13,7 @@ RUN apt-get install wget unzip
 # Composer in installed
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
-# the files are added to the volume
+# the files are added
 COPY . /app
 WORKDIR /app
 # First, composer install or updates the dependencies
