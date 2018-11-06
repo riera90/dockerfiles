@@ -7,15 +7,18 @@ services:
     environment:
       - POSTGRES_PASSWORD=password
       - POSTGRES_USER=admin
+    hostname: db
 
   web:
     build: .
+    restart: always
     ports:
       - 0.0.0.0:80:80
     environment:
-      - DATABASE_URL=pgsql://admin:password@172.19.0.2:5432/dauco
+      - DATABASE_URL=pgsql://admin:password@db:5432/dauco
       - DRIVER='pdo_pgsql'
       - CHARSET=utf8
       - COLLATE=utf8_unicode_ci
+    hostname: dauco_web
     depends_on:
-     - db
+      - db
