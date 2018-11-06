@@ -18,5 +18,5 @@ ADD . /app
 WORKDIR /app
 # First, composer install or updates the dependencies
 # Then, the .env file is configured with sed and the variables
-# Finally the service is launched
-CMD composer install && sed -i -r 's,(DATABASE_URL=).*,\1'"$DATABASE_URL"',' ./.env && ./bin/console server:run 0.0.0.0:80
+# Finally init.sh is launched
+CMD chmod +x ./init.sh && ./init.sh
