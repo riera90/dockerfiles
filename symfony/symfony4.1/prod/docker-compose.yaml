@@ -19,6 +19,7 @@ services:
       - DRIVER='pdo_pgsql'
       - CHARSET=utf8
       - COLLATE=utf8_unicode_ci
+      - ENV=prod
     hostname: dauco_web
     depends_on:
       - db
