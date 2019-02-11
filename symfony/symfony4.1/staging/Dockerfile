@@ -11,10 +11,14 @@ wget unzip vim
 # Composer in installed
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
-# the files are added to the volume
+# the files are added
 ADD . /app
 WORKDIR /app
 # Finally init.sh is launched to install dependencies, configure .env and launch the server
 CMD composer install && \
 sed -i -r 's,(DATABASE_URL=).*,\1'"$DATABASE_URL"',' ./.env && \
+sed -i -r 's,(APP_ENV=).*,\1'"$ENV"',' ./.env && \
+sed -i -r 's,(.*)(driver: ).*,\1\2'"$DRIVER"',' ./config/packages/doctrine.yaml && \
+sed -i -r 's,(.*)( charset: ).*,\1\2'"$CHARSET"',' ./config/packages/doctrine.yaml && \
+sed -i -r 's,(.*)(collate: ).*,\1\2'"$COLLATE"',' ./config/packages/doctrine.yaml && \
 ./bin/console server:run 0.0.0.0:8000

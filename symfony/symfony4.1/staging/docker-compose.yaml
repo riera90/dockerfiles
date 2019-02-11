@@ -5,8 +5,8 @@ services:
     image: postgres:11.0
     restart: always
     volumes:
-      - ~/backup/arenas/bd/config/my-postgres.conf:/etc/postgresql/postgresql.conf:z
-      - ~/backup/arenas/bd/data:/var/lib/postgresql/data:z
+      - ./backup/arenas/bd/config/my-postgres.conf:/etc/postgresql/postgresql.conf:z
+      - ./backup/arenas/bd/data:/var/lib/postgresql/data:z
     environment:
       - POSTGRES_PASSWORD=password
       - POSTGRES_USER=admin
@@ -16,8 +16,10 @@ services:
   web:
     build: .
     restart: always
+    volumes:
+      - .:/app
     ports:
-      - 0.0.0.0:80:80
+      - 0.0.0.0:8000:8000
     environment:
       - DATABASE_URL=pgsql://admin:password@db:5432/db
       - DRIVER='pdo_pgsql'
