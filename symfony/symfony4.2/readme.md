@@ -5,3 +5,16 @@ For example, if you want to start the develop docker, you must, do as follows
         docker-compose up --build
         
 You might need to run ```docker-compose``` as root
+
+
+Then, you will need to create the database
+
+for dev:
+
+	docker-compose exec web bin/console d:s:c
+
+
+for postgress (prod and staging)
+
+	docker-compose exec web bin/console d:d:c
+	docker-compose exec web bin/console d:s:c
