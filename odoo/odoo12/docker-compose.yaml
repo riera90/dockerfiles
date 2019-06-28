@@ -1,0 +1,26 @@
+version: "3"
+services:
+
+  db:
+    image: postgres:10
+    hostname: db
+    restart: always
+    # volumes:
+      # - ~/backup/arenas/bd/config/my-postgres.conf:/etc/postgresql/postgresql.conf:z
+      # - ~/backup/arenas/bd/data:/var/lib/postgresql/data:z
+    environment:
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+      - POSTGRES_DB=postgres
+
+
+  odoo12:
+    build: .
+    hostname: odoo12
+    user: odoo
+    restart: always
+    ports:
+      - 0.0.0.0:80:8069
+    # environment:
+    depends_on:
+        - db
